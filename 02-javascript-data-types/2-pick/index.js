@@ -7,12 +7,14 @@
 export const pick = (obj, ...fields) => {
 
   const newObj = {};
-  const selected = [...fields];
-  selected.forEach((el) => {
-    if (obj.hasOwnProperty(el)) {
-      newObj[el] = obj[el];
-    }
+
+  fields.forEach((el) => {
+    newObj[el] = obj[el];
   });
 
   return newObj;
 };
+
+const obj = {foo: 'foo', bar: 'bar', baz: 'baz'};
+
+pick(obj, 'foo', 'bar');

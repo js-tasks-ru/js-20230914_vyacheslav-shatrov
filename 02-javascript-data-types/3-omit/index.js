@@ -6,11 +6,9 @@
  */
 export const omit = (obj, ...fields) => {
   const newObj = { ...obj };
-  const toDelete = [...fields];
-  toDelete.forEach((el) => {
-    if (obj.hasOwnProperty(el)) {
-      delete newObj[el];
-    }
+
+  fields.forEach((el) => {
+    delete newObj[el];
   });
 
   return newObj;
