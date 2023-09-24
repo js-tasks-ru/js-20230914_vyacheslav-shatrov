@@ -6,14 +6,14 @@
 export function createGetter(path) {
   const stack = path.split(".");
   return function (product) {
-    let resObj = { ...product };
+    let resObj = product;
     for (let key of stack) {
-      if (typeof resObj[key] === "object" && resObj[key] !== null) {
+      if (typeof resObj[key] === "object") {
         resObj = resObj[key];
       } else if (resObj[key] !== undefined) {
         return resObj[key];
       } else {
-        return undefined;
+        return;
       }
     }
   };
