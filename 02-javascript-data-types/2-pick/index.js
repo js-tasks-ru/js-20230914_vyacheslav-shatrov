@@ -6,4 +6,15 @@
  */
 export const pick = (obj, ...fields) => {
 
+  const newObj = {};
+
+  fields.forEach((el) => {
+    newObj[el] = obj[el];
+  });
+
+  return newObj;
 };
+
+const obj = {foo: 'foo', bar: 'bar', baz: 'baz'};
+
+pick(obj, 'foo', 'bar');
