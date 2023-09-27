@@ -7,6 +7,7 @@
   </head>
 
   <body>
+    <h2>ColumnCharts with data</h2>
     <div class="dashboard__charts">
       <div id="orders" class="dashboard__chart_orders"></div>
       <div id="sales" class="dashboard__chart_sales"></div>
@@ -40,6 +41,7 @@
         value: 321
       });
 
+      salesChart.update([ 10, 40, 40, 80, 65, 35 ]);
       orders.append(ordersChart.element);
       sales.append(salesChart.element);
       customers.append(customersChart.element);
