@@ -1,9 +1,15 @@
+const defaultParams = {
+  data: [],
+  link: '',
+  value: 0,
+};
+
 export default class ColumnChart {
-  constructor(options) {
-    this.data = options.data || [];
-    this.label = options.label || '';
-    this.value = options.value || 0;
-    this.link = options.link || '';
+  constructor(options = defaultParams) {
+    this.data = options.data;
+    this.label = options.label;
+    this.value = options.value;
+    this.link = options.link;
 
     this.element = this.createElement();
   }
@@ -29,10 +35,7 @@ export default class ColumnChart {
     return (
       `
       <div class="column-chart ${loading}" style="--chart-height: 50">
-      <div class="column-chart__title">
-        Total ${this.label}
-        ${link}
-      </div>
+      <div class="column-chart__title">Total ${this.label}${link}</div>
       <div class="column-chart__container">
         <div data-element="header" class="column-chart__header">$${this.value}</div>
         <div data-element="body" class="column-chart__chart">
@@ -55,6 +58,7 @@ export default class ColumnChart {
   destroy() {
     this.remove();
   }
+
   createElement() {
     const element = document.createElement('div');
     element.innerHTML = this.template();
