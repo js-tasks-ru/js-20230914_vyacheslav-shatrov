@@ -51,6 +51,6 @@ export default class NotificationMessage {
     clearTimeout(this.timer);
     this.timer = null;
     this.remove();
-    NotificationMessage.lastMessage = null;
+    NotificationMessage.currentMessage = null;
   }
 }
