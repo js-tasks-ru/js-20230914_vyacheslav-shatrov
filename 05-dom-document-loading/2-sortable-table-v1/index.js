@@ -1,16 +1,17 @@
 export default class SortableTable {
+  element;
 
   constructor(headerConfig = [], data = []) {
     this.headerConfig = headerConfig;
     this.data = data;
     this.sortedField = null;
     this.orderValue = null;
-    this.element = this.createElement();
 
-    this.subElements = {
-      header: this.element.querySelector('[data-element="header"]'),
-      body: this.element.querySelector('[data-element="body"]'),
-    };
+    this.render();
+    // this.subElements = {
+    //   header: this.element.querySelector('[data-element="header"]'),
+    //   body: this.element.querySelector('[data-element="body"]'),
+    // };
   }
 
   createHeaderCell(cellConfig) {
@@ -123,18 +124,17 @@ export default class SortableTable {
     return data;
   }
 
-  createElement() {
+  createElement(template) {
 
-    const element = document.createElement('div');
-    element.classList.add('products-list__container');
-    element.dataset.element = "productsContainer";
-    element.innerHTML = this.createTableTemplate();
+    this.element = document.createElement('div');
+    this.element.classList.add('products-list__container');
+    this.element.dataset.element = "productsContainer";
+    this.element.innerHTML = template;
 
-    return element;
+    return this.element;
   }
 
   sort(fieldValue, orderValue) {
-    let root = document.getElementById('root');
 
     const newData = [...this.data];
     this.sortedField = fieldValue;
@@ -145,11 +145,13 @@ export default class SortableTable {
       this.data = this.sortNumberValues(newData, fieldValue, orderValue);
     }
 
-    this.element = this.createElement();
-    root.innerHTML = '';
-    root.append(this.element);
+    this.element = this.createElement(this.createTableTemplate());
+
   }
 
+  render() {
+    this.createElement(this.createTableTemplate());
+  }
   remove() {
     this.element.remove();
   }
